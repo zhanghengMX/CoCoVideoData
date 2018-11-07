@@ -1,5 +1,8 @@
 package com.henry.cocovideodata.list
 
+import okhttp3.*
+import java.io.IOException
+
 /**
  * author：heng.zhang
  * date：2018/11/7
@@ -7,12 +10,28 @@ package com.henry.cocovideodata.list
  */
 class VideoListPresenter(override var view: VideoListContract.View) : VideoListContract.Presenter {
 
-    override fun init() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    init {
+        view.presenter = this
+    }
+    override fun start() {
+        loadData()
     }
 
     override fun loadData() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val okHttpClient = OkHttpClient()
+        val request = Request.Builder()
+                .url("")
+                .method("GET", null)
+                .build()
+        val call = okHttpClient.newCall(request)
+        call.enqueue(object : Callback {
+            override fun onFailure(call: Call?, e: IOException?) {
+            }
+
+            override fun onResponse(call: Call?, response: Response?) {
+            }
+
+        })
     }
 
     override fun loadMoreData() {

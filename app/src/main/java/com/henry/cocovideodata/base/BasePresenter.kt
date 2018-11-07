@@ -8,7 +8,7 @@ package com.henry.cocovideodata.base
 interface BasePresenter<T> {
     var view : T
 
-    fun init()
+    fun start()
 
     fun loadData()
 
