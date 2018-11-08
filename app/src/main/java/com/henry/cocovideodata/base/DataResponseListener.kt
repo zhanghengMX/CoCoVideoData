@@ -6,5 +6,5 @@ package com.henry.cocovideodata.base
  * description：
  */
 interface DataResponseListener {
-    fun onResult(result : Any)
+    fun onResult(dataType : String, result : Any)
 }
