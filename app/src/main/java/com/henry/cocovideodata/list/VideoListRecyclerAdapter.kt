@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.henry.cocovideodata.R
 import com.henry.cocovideodata.base.RecyclerOnItemClickListener
@@ -31,11 +32,16 @@ class VideoListRecyclerAdapter(private val datas : List<String>) : RecyclerView.
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = datas[position]
-        holder.tv.text = data
+        holder.videoNameTv.text = data
         holder.itemView.setOnClickListener { onclickListener?.onClick(data) }
     }
 
     class MyViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
-        val tv = itemView?.findViewById(R.id.textView) as TextView
+        val videoNameTv = itemView?.findViewById(R.id.tv_video_name) as TextView
+        val actorTv = itemView?.findViewById(R.id.tv_actor) as TextView
+        val directorTv = itemView?.findViewById(R.id.tv_director) as TextView
+        val scoreTv = itemView?.findViewById(R.id.tv_score) as TextView
+        val posterIv = itemView?.findViewById(R.id.iv_poster) as ImageView
+
     }
 }
