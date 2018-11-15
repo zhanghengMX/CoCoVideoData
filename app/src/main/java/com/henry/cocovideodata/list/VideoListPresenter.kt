@@ -3,6 +3,7 @@ package com.henry.cocovideodata.list
 import android.text.TextUtils
 import com.henry.cocovideodata.base.DataResponseListener
 import com.henry.cocovideodata.bean.Top250Video
+import com.henry.cocovideodata.bean.VideoListItem
 
 /**
  * author：heng.zhang
@@ -15,7 +16,26 @@ class VideoListPresenter(override var view: VideoListContract.View) : VideoListC
         override fun onResult(dataType: String, result: Any) {
             if (TextUtils.equals(VideoListModel.DATA_TYPE_TOP_250, dataType)) {
                 val top250Video = result as Top250Video
-                //TODO 将数据传递给View，刷新UI显示
+                val videoList = ArrayList<VideoListItem>()
+                for (subject in top250Video.subjects) {
+                    val actorNames = ArrayList<String>()
+                    val directorNames = ArrayList<String>()
+                    for (actor in subject.casts) {
+                        actorNames.add(actor.name)
+                    }
+                    for (director in subject.directors) {
+                        directorNames.add(director.name)
+                    }
+                    videoList.add(VideoListItem(
+                            subject.title,
+                            subject.rating.average.toString(),
+                            subject.genres,
+                            actorNames,
+                            subject.subtype,
+                            directorNames,
+                            mutableListOf(subject.images.large, subject.images.medium, subject.images.small)))
+                }
+                view.refreshData(videoList)
             }
         }
     })

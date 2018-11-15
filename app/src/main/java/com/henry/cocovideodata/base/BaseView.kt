@@ -7,4 +7,5 @@ package com.henry.cocovideodata.base
  */
 interface BaseView<T> {
     var presenter : T
+    fun refreshData(data : Any)
 }

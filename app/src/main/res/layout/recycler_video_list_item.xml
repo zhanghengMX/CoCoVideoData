@@ -4,11 +4,10 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="115dp">
+        android:layout_height="120dp">
 
     <ImageView
-        android:background="@color/colorAccent"
-        android:layout_width="60dp"
+        android:layout_width="70dp"
         app:srcCompat="@mipmap/ic_launcher"
         android:id="@+id/iv_poster"
         android:layout_marginStart="16dp"
@@ -21,7 +20,7 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintVertical_bias="0.0"
         app:layout_constraintHorizontal_bias="0.0"
-        android:layout_height="100dp"/>
+        android:layout_height="110dp"/>
 
     <TextView
         android:text="影片名称"
@@ -38,7 +37,6 @@
         app:layout_constraintHorizontal_bias="0.01"/>
 
     <TextView
-        android:text="主演:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_actor"
@@ -54,7 +52,6 @@
         app:layout_constraintHorizontal_bias="0.0"/>
 
     <TextView
-        android:text="导演："
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_director"
@@ -71,7 +68,6 @@
         app:layout_constraintVertical_bias="0.0"/>
 
     <TextView
-        android:text="5.0分"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_score"

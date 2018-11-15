@@ -1,12 +1,16 @@
 package com.henry.cocovideodata.list
 
+import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import com.henry.cocovideodata.App
 import com.henry.cocovideodata.R
 import com.henry.cocovideodata.base.RecyclerOnItemClickListener
+import com.henry.cocovideodata.bean.VideoListItem
 import kotlinx.android.synthetic.main.activity_video_list.*
 
 /**
@@ -15,8 +19,14 @@ import kotlinx.android.synthetic.main.activity_video_list.*
  * description：
  */
 class VideoListActivity : AppCompatActivity(), VideoListContract.View {
+    override fun refreshData(data : Any) {
+        val list = data as MutableList<VideoListItem>
+        runOnUiThread { recyclerAdapter.addVideoListItem(list) }
+    }
+
     override var presenter: VideoListContract.Presenter = VideoListPresenter(this)
     private lateinit var recyclerAdapter: VideoListRecyclerAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video_list)
@@ -26,10 +36,10 @@ class VideoListActivity : AppCompatActivity(), VideoListContract.View {
     private fun initView() {
         recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerAdapter = VideoListRecyclerAdapter(arrayListOf("item01", "item02", "item03"))
-        recyclerAdapter.setOnClickListener(object : RecyclerOnItemClickListener<String> {
-            override fun onClick(t: String) {
-                Log.d("HR", t)
+        recyclerAdapter = VideoListRecyclerAdapter(mutableListOf())
+        recyclerAdapter.setOnClickListener(object : RecyclerOnItemClickListener<VideoListItem> {
+            override fun onClick(t: VideoListItem) {
+                Log.d("HR", t.toString())
             }
         })
         recyclerView.adapter = recyclerAdapter
