@@ -1,19 +1,19 @@
-package com.henry.cocovideodata.list
+package com.henry.cocovideodata.detail
 
 import com.henry.cocovideodata.base.BasePresenter
 import com.henry.cocovideodata.base.BaseView
 
 /**
  * author：heng.zhang
- * date：2018/11/7
+ * date：2018/11/19
  * description：
  */
-interface VideoListContract {
+interface VideoDetailContract {
     interface View : BaseView<Presenter> {
-
     }
 
     interface Presenter : BasePresenter<View> {
-        fun loadMoreData()
+        fun insertVideoItem()
+        fun getVideoDetail()
     }
 }

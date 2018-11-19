@@ -31,7 +31,7 @@ class VideoListActivity : AppCompatActivity(), VideoListContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video_list)
         initView()
-        presenter.start()
+        presenter.start(Bundle())
     }
     private fun initView() {
         recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
@@ -39,7 +39,7 @@ class VideoListActivity : AppCompatActivity(), VideoListContract.View {
         recyclerAdapter = VideoListRecyclerAdapter(mutableListOf())
         recyclerAdapter.setOnClickListener(object : RecyclerOnItemClickListener<VideoListItem> {
             override fun onClick(t: VideoListItem) {
-                Log.d("HR", t.toString())
+                //TODO 打开影片详情页
             }
         })
         recyclerView.adapter = recyclerAdapter

@@ -1,5 +1,7 @@
 package com.henry.cocovideodata.base
 
+import android.os.Bundle
+
 /**
  * author：heng.zhang
  * date：2018/11/7
@@ -8,9 +10,5 @@ package com.henry.cocovideodata.base
 interface BasePresenter<T> {
     var view : T
 
-    fun start()
-
-    fun loadData()
-
-    fun loadMoreData()
+    fun start(params: Bundle)
 }

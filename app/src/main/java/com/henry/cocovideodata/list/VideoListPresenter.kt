@@ -1,5 +1,6 @@
 package com.henry.cocovideodata.list
 
+import android.os.Bundle
 import android.text.TextUtils
 import com.henry.cocovideodata.base.DataResponseListener
 import com.henry.cocovideodata.bean.Top250Video
@@ -27,6 +28,7 @@ class VideoListPresenter(override var view: VideoListContract.View) : VideoListC
                         directorNames.add(director.name)
                     }
                     videoList.add(VideoListItem(
+                            subject.id,
                             subject.title,
                             subject.rating.average.toString(),
                             subject.genres,
@@ -44,11 +46,7 @@ class VideoListPresenter(override var view: VideoListContract.View) : VideoListC
         view.presenter = this
     }
 
-    override fun start() {
-        loadData()
-    }
-
-    override fun loadData() {
+    override fun start(params : Bundle) {
         model.requestTop250List(0, 10)
     }
 
