@@ -14,6 +14,5 @@ interface VideoDetailContract {
 
     interface Presenter : BasePresenter<View> {
         fun insertVideoItem()
-        fun getVideoDetail()
     }
 }

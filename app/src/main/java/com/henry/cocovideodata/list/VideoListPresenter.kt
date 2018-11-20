@@ -2,6 +2,7 @@ package com.henry.cocovideodata.list
 
 import android.os.Bundle
 import android.text.TextUtils
+import com.henry.cocovideodata.base.BaseModel
 import com.henry.cocovideodata.base.DataResponseListener
 import com.henry.cocovideodata.bean.Top250Video
 import com.henry.cocovideodata.bean.VideoListItem
@@ -15,7 +16,7 @@ class VideoListPresenter(override var view: VideoListContract.View) : VideoListC
 
     private val model = VideoListModel(object : DataResponseListener {
         override fun onResult(dataType: String, result: Any) {
-            if (TextUtils.equals(VideoListModel.DATA_TYPE_TOP_250, dataType)) {
+            if (TextUtils.equals(BaseModel.DATA_TYPE_TOP_250, dataType)) {
                 val top250Video = result as Top250Video
                 val videoList = ArrayList<VideoListItem>()
                 for (subject in top250Video.subjects) {

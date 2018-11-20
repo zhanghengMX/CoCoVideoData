@@ -7,4 +7,8 @@ package com.henry.cocovideodata.base
  */
 interface BaseModel {
     var responseListener : DataResponseListener
+    companion object{
+        val DATA_TYPE_TOP_250 = "@data-type-top-250"
+        val DATA_TYPE_VIDEO_DETAIL = "@data-type-video_detail"
+    }
 }

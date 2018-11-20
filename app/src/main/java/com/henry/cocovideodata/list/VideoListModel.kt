@@ -14,9 +14,6 @@ import java.io.IOException
  * description：
  */
 class VideoListModel(override var responseListener: DataResponseListener) : BaseModel {
-    companion object {
-        val DATA_TYPE_TOP_250 = "@data-type-top-250"
-    }
     fun requestTop250List(start : Int, count : Int) {
         val request = Request.Builder()
                 .url("https://api.douban.com/v2/movie/top250?start=$start&count=$count")
@@ -31,7 +28,7 @@ class VideoListModel(override var responseListener: DataResponseListener) : Base
             override fun onResponse(call: Call?, response: Response?) {
                 val jsonString  = response?.body()?.string()
                 val top250Video = Gson().fromJson(jsonString, Top250Video::class.java)
-                responseListener.onResult(DATA_TYPE_TOP_250, top250Video)
+                responseListener.onResult(BaseModel.DATA_TYPE_TOP_250, top250Video)
             }
         })
     }
