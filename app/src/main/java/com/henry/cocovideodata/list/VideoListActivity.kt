@@ -1,6 +1,7 @@
 package com.henry.cocovideodata.list
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
@@ -11,6 +12,7 @@ import com.henry.cocovideodata.App
 import com.henry.cocovideodata.R
 import com.henry.cocovideodata.base.RecyclerOnItemClickListener
 import com.henry.cocovideodata.bean.VideoListItem
+import com.henry.cocovideodata.detail.VideoDetailActivity
 import kotlinx.android.synthetic.main.activity_video_list.*
 
 /**
@@ -39,7 +41,9 @@ class VideoListActivity : AppCompatActivity(), VideoListContract.View {
         recyclerAdapter = VideoListRecyclerAdapter(mutableListOf())
         recyclerAdapter.setOnClickListener(object : RecyclerOnItemClickListener<VideoListItem> {
             override fun onClick(t: VideoListItem) {
-                //TODO 打开影片详情页
+                val intent = Intent(this@VideoListActivity, VideoDetailActivity::class.java)
+                intent.putExtra("videoId", t.id)
+                startActivity(intent)
             }
         })
         recyclerView.adapter = recyclerAdapter

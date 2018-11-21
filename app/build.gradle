@@ -46,4 +46,5 @@ dependencies {
     compile 'cn.bmob.android:http-legacy:1.0'
     compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'
     testCompile 'junit:junit:4.12'
+    compile 'org.jsoup:jsoup:1.11.3'
 }
