@@ -10,6 +10,7 @@ import com.henry.cocovideodata.base.BaseView
  */
 interface VideoDetailContract {
     interface View : BaseView<Presenter> {
+        fun refreshVideoSource(result: Any)
     }
 
     interface Presenter : BasePresenter<View> {

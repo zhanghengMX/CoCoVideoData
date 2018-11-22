@@ -43,6 +43,7 @@ class VideoListActivity : AppCompatActivity(), VideoListContract.View {
             override fun onClick(t: VideoListItem) {
                 val intent = Intent(this@VideoListActivity, VideoDetailActivity::class.java)
                 intent.putExtra("videoId", t.id)
+                intent.putExtra("videoName", t.name)
                 startActivity(intent)
             }
         })

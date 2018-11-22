@@ -1,6 +1,8 @@
 package com.henry.cocovideodata.detail
 
 import android.os.Bundle
+import android.text.TextUtils
+import com.henry.cocovideodata.base.BaseModel
 import com.henry.cocovideodata.base.DataResponseListener
 import com.henry.cocovideodata.bean.Video
 
@@ -16,7 +18,11 @@ class VideoDetailPresenter(override var view: VideoDetailContract.View) : VideoD
     }
     private val model = VideoDetailModel(object : DataResponseListener {
         override fun onResult(dataType: String, result: Any) {
-            view.refreshData(result)
+            if (TextUtils.equals(dataType, BaseModel.DATA_TYPE_VIDEO_DETAIL)) {
+                view.refreshData(result)
+            } else if (TextUtils.equals(dataType, BaseModel.DATA_TYPE_VIDEO_SOURCE)) {
+                view.refreshVideoSource(result)
+            }
         }
     })
     override fun insertVideoItem() {
@@ -26,5 +32,8 @@ class VideoDetailPresenter(override var view: VideoDetailContract.View) : VideoD
     override fun start(params : Bundle) {
         val videoId = params.getString("videoId")
         model.getVideoDetail(videoId)
+
+        val videoName = params.getString("videoName")
+        model.getVideoSource(videoName)
     }
 }

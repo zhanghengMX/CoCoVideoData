@@ -49,15 +49,10 @@ class VideoDetailActivity : AppCompatActivity(), VideoDetailContract.View {
         }
     }
 
+    override fun refreshVideoSource(result: Any) {
+    }
+
     fun onUploadData(view : View) {
         Log.i("HR", "onUploadData")
-        val sourceCatcher = SourceCatcher(SourceCatcher.OK_SEARCH_URL, SourceCatcher.OK_BASE_URL)
-        Thread(object : Runnable{
-            override fun run() {
-                val list = sourceCatcher.start("肖申克的救赎")
-                Log.i("HR", "onUploadData")
-            }
-
-        }).start()
     }
 }

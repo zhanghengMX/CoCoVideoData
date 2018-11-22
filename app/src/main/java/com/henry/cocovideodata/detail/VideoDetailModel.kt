@@ -1,11 +1,13 @@
 package com.henry.cocovideodata.detail
 
+import android.util.Log
 import com.google.gson.Gson
 import com.henry.cocovideodata.base.BaseModel
 import com.henry.cocovideodata.base.DataResponseListener
 import com.henry.cocovideodata.bean.Top250Video
 import com.henry.cocovideodata.bean.Video
 import com.henry.cocovideodata.bean.VideoDetailBean
+import com.henry.cocovideodata.jsoup.SourceCatcher
 import okhttp3.*
 import java.io.IOException
 
@@ -64,6 +66,13 @@ class VideoDetailModel(override var responseListener: DataResponseListener) : Ba
     }
 
     fun getVideoSource(videoName : String) {
+        val sourceCatcher = SourceCatcher(SourceCatcher.OK_SEARCH_URL, SourceCatcher.OK_BASE_URL)
+        Thread(object : Runnable{
+            override fun run() {
+                val list = sourceCatcher.start(videoName)
+                responseListener.onResult(BaseModel.DATA_TYPE_VIDEO_SOURCE, list)
+            }
 
+        }).start()
     }
 }

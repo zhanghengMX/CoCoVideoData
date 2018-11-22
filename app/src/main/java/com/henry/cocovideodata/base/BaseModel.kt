@@ -10,5 +10,7 @@ interface BaseModel {
     companion object{
         val DATA_TYPE_TOP_250 = "@data-type-top-250"
         val DATA_TYPE_VIDEO_DETAIL = "@data-type-video_detail"
+        val DATA_TYPE_VIDEO_SOURCE = "@data-type-video_source"
+
     }
 }
