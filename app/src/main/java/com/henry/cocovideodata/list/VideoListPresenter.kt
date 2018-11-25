@@ -2,6 +2,7 @@ package com.henry.cocovideodata.list
 
 import android.os.Bundle
 import android.text.TextUtils
+import com.henry.cocovideodata.App
 import com.henry.cocovideodata.base.BaseModel
 import com.henry.cocovideodata.base.DataResponseListener
 import com.henry.cocovideodata.bean.Top250Video
@@ -38,7 +39,12 @@ class VideoListPresenter(override var view: VideoListContract.View) : VideoListC
                             directorNames,
                             mutableListOf(subject.images.large, subject.images.medium, subject.images.small)))
                 }
-                view.refreshData(videoList)
+                App.instance().postToMainLooper(object : Runnable {
+                    override fun run() {
+                        view.refreshData(videoList)
+                    }
+
+                })
             }
         }
     })

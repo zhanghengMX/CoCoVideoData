@@ -1,12 +1,31 @@
 package com.henry.cocovideodata
 
 import android.app.Application
+import android.os.Handler
 import cn.bmob.v3.Bmob
 
-class App : Application() {
+class App: Application() {
+
+    private lateinit var uiMainHandler: Handler
+
+    companion object {
+        private var instance : App? = null
+        fun instance() = instance!!
+    }
+
     override fun onCreate() {
-        super.onCreate()
+        instance = this
+        uiMainHandler = Handler(mainLooper)
         initBmob()
+        super.onCreate()
+    }
+
+    fun postToMainLooper(runnable: Runnable) {
+        uiMainHandler.post(runnable)
+    }
+
+    fun postToMainLooperDelayed(runnable: Runnable, ms : Long) {
+        uiMainHandler.postDelayed(runnable, ms)
     }
 
     private fun initBmob() {

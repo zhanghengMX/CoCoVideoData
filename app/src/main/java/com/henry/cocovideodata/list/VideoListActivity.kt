@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.activity_video_list.*
 class VideoListActivity : AppCompatActivity(), VideoListContract.View {
     override fun refreshData(data : Any) {
         val list = data as MutableList<VideoListItem>
-        runOnUiThread { recyclerAdapter.addVideoListItem(list) }
+         recyclerAdapter.addVideoListItem(list)
     }
 
     override var presenter: VideoListContract.Presenter = VideoListPresenter(this)
