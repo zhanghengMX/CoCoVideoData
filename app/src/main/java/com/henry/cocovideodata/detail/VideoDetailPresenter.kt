@@ -7,6 +7,7 @@ import com.henry.cocovideodata.App
 import com.henry.cocovideodata.base.BaseModel
 import com.henry.cocovideodata.base.DataResponseListener
 import com.henry.cocovideodata.bean.Video
+import com.henry.cocovideodata.jsoup.WebMovie
 
 /**
  * Copyright (c) 2018, 北京视达科科技有限责任公司 All rights reserved.

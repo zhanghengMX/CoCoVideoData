@@ -12,4 +12,5 @@ data class Video(val id: String,
                  val summary : String,
                  val subType: String,
                  val directors: MutableList<MutableMap<String, String>>,
-                 val images: MutableMap<String, String>) : BmobObject()
+                 val images: MutableMap<String, String>,
+                 val urls : MutableList<MutableList<String>>) : BmobObject()

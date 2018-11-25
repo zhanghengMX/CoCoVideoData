@@ -18,7 +18,11 @@ import kotlinx.android.synthetic.main.activity_video_detail.*
 
 //https://api.douban.com/v2/movie/subject/:id豆瓣详情接口
 class VideoDetailActivity : AppCompatActivity(), VideoDetailContract.View {
+    companion object {
+        private val TAG = "VideoDetailActivity"
+    }
 
+    private lateinit var videoData : Video
 
     override var presenter: VideoDetailContract.Presenter = VideoDetailPresenter(this)
     private lateinit var recyclerAdapter: DetailSourceRecyclerAdapter
@@ -39,6 +43,7 @@ class VideoDetailActivity : AppCompatActivity(), VideoDetailContract.View {
 
     override fun refreshData(data: Any) {
         if (data is Video) {
+            videoData = data
             Glide.with(this)
                     .load(data.images["medium"])
                     .into(detailPosterIv)
@@ -74,7 +79,9 @@ class VideoDetailActivity : AppCompatActivity(), VideoDetailContract.View {
         val dialogBuilder = AlertDialog.Builder(this)
         dialogBuilder.setItems(titles.toTypedArray(), object : DialogInterface.OnClickListener {
             override fun onClick(dialog: DialogInterface?, which: Int) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                Log.d(TAG, "which : $which")
+                buildUploadData(list[which])
+
             }
 
         })
@@ -82,7 +89,18 @@ class VideoDetailActivity : AppCompatActivity(), VideoDetailContract.View {
         dialogBuilder.show()
     }
 
+    private fun buildUploadData(selectedItem : WebMovie) {
+        for (indexSource in selectedItem.playSource) {
+            val urls = mutableListOf<String>()
+            for (source in indexSource.sourceList) {
+                urls.add(source.url)
+            }
+            videoData.urls.add(indexSource.sourceIndex, urls)
+        }
+    }
+
     fun onUploadData(view: View) {
         Log.i("HR", "onUploadData")
+        val aaa = videoData
     }
 }

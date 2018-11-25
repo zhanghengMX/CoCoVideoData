@@ -58,7 +58,7 @@ class VideoDetailModel(override var responseListener: DataResponseListener) : Ba
                                 videoDetailBean.rating.average, videoDetailBean.year,
                                 videoDetailBean.countries, videoDetailBean.genres,
                                 actorList, videoDetailBean.summary,
-                                videoDetailBean.subtype, directorList, images)
+                                videoDetailBean.subtype, directorList, images, mutableListOf())
 
                         responseListener.onResult(BaseModel.DATA_TYPE_VIDEO_DETAIL, video)
                     }

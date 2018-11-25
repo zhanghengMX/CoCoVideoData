@@ -2,6 +2,7 @@ package com.henry.cocovideodata.detail
 
 import com.henry.cocovideodata.base.BasePresenter
 import com.henry.cocovideodata.base.BaseView
+import com.henry.cocovideodata.jsoup.WebMovie
 
 /**
  * author：heng.zhang
