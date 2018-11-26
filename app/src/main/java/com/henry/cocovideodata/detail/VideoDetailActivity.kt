@@ -10,7 +10,7 @@ import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
 import com.henry.cocovideodata.R
-import com.henry.cocovideodata.bean.Video
+import com.henry.cocovideodata.bean.VideoDetail
 import com.henry.cocovideodata.jsoup.WebMovie
 import com.henry.cocovideodata.list.DetailSourceRecyclerAdapter
 import com.henry.cocovideodata.utils.BmobHelper
@@ -22,8 +22,6 @@ class VideoDetailActivity : AppCompatActivity(), VideoDetailContract.View {
     companion object {
         private val TAG = "VideoDetailActivity"
     }
-
-    private lateinit var videoData : Video
 
     override var presenter: VideoDetailContract.Presenter = VideoDetailPresenter(this)
     private lateinit var recyclerAdapter: DetailSourceRecyclerAdapter
@@ -43,8 +41,7 @@ class VideoDetailActivity : AppCompatActivity(), VideoDetailContract.View {
     }
 
     override fun refreshData(data: Any) {
-        if (data is Video) {
-            videoData = data
+        if (data is VideoDetail) {
             Glide.with(this)
                     .load(data.images["medium"])
                     .into(detailPosterIv)
@@ -68,7 +65,8 @@ class VideoDetailActivity : AppCompatActivity(), VideoDetailContract.View {
         }
     }
 
-    override fun refreshVideoSource(data: Any) {
+    fun refreshVideoSource() {
+
     }
 
     override fun showSourceListDialog(list: Any) {
@@ -81,8 +79,8 @@ class VideoDetailActivity : AppCompatActivity(), VideoDetailContract.View {
         dialogBuilder.setItems(titles.toTypedArray(), object : DialogInterface.OnClickListener {
             override fun onClick(dialog: DialogInterface?, which: Int) {
                 Log.d(TAG, "which : $which")
-                buildUploadData(list[which])
-
+                presenter.buildVideoUrlData(list[which])
+                refreshVideoSource()
             }
 
         })
@@ -90,18 +88,22 @@ class VideoDetailActivity : AppCompatActivity(), VideoDetailContract.View {
         dialogBuilder.show()
     }
 
-    private fun buildUploadData(selectedItem : WebMovie) {
-        for (indexSource in selectedItem.playSource) {
-            val urls = mutableListOf<String>()
-            for (source in indexSource.sourceList) {
-                urls.add(source.url)
-            }
-            videoData.urls.add(indexSource.sourceIndex, urls)
-        }
-    }
-
     fun onUploadData(view: View) {
         Log.i("HR", "onUploadData")
-        BmobHelper.uploadObject(videoData)
+        BmobHelper.uploadObject(presenter.getVideoDetailCache(), object : BmobHelper.BmobLoadDataListener {
+            override fun onFailed() {
+            }
+
+            override fun onSuccess() {
+
+            }
+        })
+        BmobHelper.batchUploadObject(presenter.getVideoUrlsCache(), object : BmobHelper.BmobLoadDataListener {
+            override fun onSuccess() {
+            }
+
+            override fun onFailed() {
+            }
+        })
     }
 }
