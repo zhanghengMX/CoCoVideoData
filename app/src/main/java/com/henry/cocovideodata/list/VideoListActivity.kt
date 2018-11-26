@@ -14,6 +14,10 @@ import com.henry.cocovideodata.base.RecyclerOnItemClickListener
 import com.henry.cocovideodata.bean.VideoListItem
 import com.henry.cocovideodata.detail.VideoDetailActivity
 import kotlinx.android.synthetic.main.activity_video_list.*
+import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener
+
 
 /**
  * author：heng.zhang
@@ -36,6 +40,19 @@ class VideoListActivity : AppCompatActivity(), VideoListContract.View {
         presenter.start(Bundle())
     }
     private fun initView() {
+
+        val refreshLayout = findViewById(R.id.refreshLayout) as RefreshLayout
+        refreshLayout.setOnRefreshListener(object : OnRefreshListener {
+            override fun onRefresh(refreshlayout: RefreshLayout) {
+                refreshlayout.finishRefresh(2000/*,false*/)//传入false表示刷新失败
+            }
+        })
+        refreshLayout.setOnLoadMoreListener(object : OnLoadMoreListener {
+            override fun onLoadMore(refreshLayout: RefreshLayout) {
+                refreshLayout.finishLoadMore(2000/*,false*/)//传入false表示刷新失败
+            }
+        })
+
         recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerAdapter = VideoListRecyclerAdapter(mutableListOf())

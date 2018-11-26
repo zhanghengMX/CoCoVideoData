@@ -14,7 +14,6 @@ import com.henry.cocovideodata.bean.VideoListItem
  * description：
  */
 class VideoListPresenter(override var view: VideoListContract.View) : VideoListContract.Presenter {
-
     private val model = VideoListModel(object : DataResponseListener {
         override fun onResult(dataType: String, result: Any) {
             if (TextUtils.equals(BaseModel.DATA_TYPE_TOP_250, dataType)) {
@@ -58,6 +57,5 @@ class VideoListPresenter(override var view: VideoListContract.View) : VideoListC
     }
 
     override fun loadMoreData() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
