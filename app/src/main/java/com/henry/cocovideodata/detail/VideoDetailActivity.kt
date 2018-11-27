@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.henry.cocovideodata.R
 import com.henry.cocovideodata.bean.Video
 import com.henry.cocovideodata.jsoup.WebMovie
-import com.henry.cocovideodata.list.DetailSourceRecyclerAdapter
+import com.henry.cocovideodata.top250.DetailSourceRecyclerAdapter
 import com.henry.cocovideodata.utils.BmobHelper
 import kotlinx.android.synthetic.main.activity_video_detail.*
 

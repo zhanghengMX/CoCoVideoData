@@ -1,4 +1,4 @@
-package com.henry.cocovideodata.list
+package com.henry.cocovideodata.top250
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.henry.cocovideodata.list
+package com.henry.cocovideodata.top250
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -13,10 +13,14 @@ import com.henry.cocovideodata.bean.VideoListItem
  * date：2018/11/7
  * description：
  */
-class VideoListPresenter(override var view: VideoListContract.View) : VideoListContract.Presenter {
-
-    private val model = VideoListModel(object : DataResponseListener {
+class Top250ListPresenter(override var view: Top250ListContract.View) : Top250ListContract.Presenter {
+    companion object {
+        private val REQUEST_VIDEO_COUNT = 10  //单次请求的个数
+        private var REQUEST_TOTAL_COUNT = 0   //一共请求的个数
+    }
+    private val model = Top250ListModel(object : DataResponseListener {
         override fun onResult(dataType: String, result: Any) {
+            REQUEST_TOTAL_COUNT += REQUEST_VIDEO_COUNT
             if (TextUtils.equals(BaseModel.DATA_TYPE_TOP_250, dataType)) {
                 val top250Video = result as Top250Video
                 val videoList = ArrayList<VideoListItem>()
@@ -54,10 +58,10 @@ class VideoListPresenter(override var view: VideoListContract.View) : VideoListC
     }
 
     override fun start(params : Bundle) {
-        model.requestTop250List(0, 10)
+        model.requestTop250List(REQUEST_TOTAL_COUNT, REQUEST_VIDEO_COUNT)
     }
 
     override fun loadMoreData() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        model.requestTop250List(REQUEST_TOTAL_COUNT, REQUEST_VIDEO_COUNT)
     }
 }

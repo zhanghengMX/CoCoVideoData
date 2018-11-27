@@ -1,0 +1,17 @@
+1. 获取分类
+https://movie.douban.com/j/search_tags?type=movie
+
+2. 分类搜索
+https://movie.douban.com/j/search_subjects?type=movie&tag=热门&sort=recommend&page_limit=20&page_start=0
+
+3.电影Top25
+https://api.douban.com/v2/movie/top250?start=0&count=10
+
+4.影片详情
+https://api.douban.com/v2/movie/subject/$videoId
+
+5.影片搜索
+https://api.douban.com/v2/movie/search?q=西虹市首富&start=0&count=10&tag=
+
+
+注：以上接口中type：movie表示电影   tv表示电视剧

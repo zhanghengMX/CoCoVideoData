@@ -23,9 +23,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-        </activity>
-        <activity android:name=".list.VideoListActivity">
+        <activity android:name=".launcher.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -33,6 +31,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".detail.VideoDetailActivity">
+        </activity>
+        <activity android:name=".top250.Top250ListActivity">
         </activity>
     </application>
 

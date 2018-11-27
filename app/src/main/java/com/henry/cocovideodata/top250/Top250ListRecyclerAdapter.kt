@@ -1,15 +1,12 @@
-package com.henry.cocovideodata.list
+package com.henry.cocovideodata.top250
 
-import android.app.Application
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.henry.cocovideodata.App
 import com.henry.cocovideodata.R
 import com.henry.cocovideodata.base.RecyclerOnItemClickListener
 import com.henry.cocovideodata.bean.VideoListItem
@@ -19,7 +16,7 @@ import com.henry.cocovideodata.bean.VideoListItem
  * date：2018/11/12
  * description：
  */
-class VideoListRecyclerAdapter(private val datas : MutableList<VideoListItem>) : RecyclerView.Adapter<VideoListRecyclerAdapter.MyViewHolder>() {
+class Top250ListRecyclerAdapter(private val datas : MutableList<VideoListItem>) : RecyclerView.Adapter<Top250ListRecyclerAdapter.MyViewHolder>() {
     private var onclickListener : RecyclerOnItemClickListener<VideoListItem>? = null
 
     fun setOnClickListener(listener : RecyclerOnItemClickListener<VideoListItem>) {
@@ -27,7 +24,7 @@ class VideoListRecyclerAdapter(private val datas : MutableList<VideoListItem>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(parent?.context).inflate(R.layout.recycler_video_list_item, parent, false)
+        val itemView = LayoutInflater.from(parent?.context).inflate(R.layout.recycler_top250_list_item, parent, false)
         return MyViewHolder(itemView)
     }
 

@@ -1,6 +1,5 @@
-package com.henry.cocovideodata.list
+package com.henry.cocovideodata.top250
 
-import android.util.Log
 import com.google.gson.Gson
 import com.henry.cocovideodata.base.BaseModel
 import com.henry.cocovideodata.base.DataResponseListener
@@ -13,7 +12,7 @@ import java.io.IOException
  * date：2018/11/7
  * description：
  */
-class VideoListModel(override var responseListener: DataResponseListener) : BaseModel {
+class Top250ListModel(override var responseListener: DataResponseListener) : BaseModel {
     fun requestTop250List(start : Int, count : Int) {
         val request = Request.Builder()
                 .url("https://api.douban.com/v2/movie/top250?start=$start&count=$count")

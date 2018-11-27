@@ -1,4 +1,4 @@
-package com.henry.cocovideodata.list
+package com.henry.cocovideodata.top250
 
 import com.henry.cocovideodata.base.BasePresenter
 import com.henry.cocovideodata.base.BaseView
@@ -8,7 +8,7 @@ import com.henry.cocovideodata.base.BaseView
  * date：2018/11/7
  * description：
  */
-interface VideoListContract {
+interface Top250ListContract {
     interface View : BaseView<Presenter> {
 
     }
