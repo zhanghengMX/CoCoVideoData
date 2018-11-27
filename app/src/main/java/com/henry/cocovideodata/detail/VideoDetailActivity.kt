@@ -65,9 +65,7 @@ class VideoDetailActivity : AppCompatActivity(), VideoDetailContract.View {
         }
     }
 
-    fun refreshVideoSource() {
-
-    }
+    fun refreshVideoSource() = recyclerAdapter.addVideoSourceItem(presenter.getVideoUrlsCache())
 
     override fun showSourceListDialog(list: Any) {
         val titles = mutableListOf<String>()

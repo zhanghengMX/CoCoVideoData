@@ -34,31 +34,16 @@ class VideoDetailPresenter(override var view: VideoDetailContract.View) : VideoD
 
         }
     })
-    override fun insertVideoItem() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
-    override fun getVideoDetailCache(): VideoDetail {
-        return model.videoData
-    }
 
-    override fun getVideoUrlsCache(): MutableList<VideoUrl> {
-        return model.videoUrls
-    }
+    override fun getVideoDetailCache(): VideoDetail = model.videoData
+
+    override fun getVideoUrlsCache(): MutableList<VideoUrl> = model.videoUrls
 
     override fun buildVideoUrlData(webMovie: WebMovie) {
         for (indexSource in webMovie.playSource) {
-            val urls = mutableListOf<MutableMap<String, String>>()
-            for (source in indexSource.sourceList) {
-                val map = mutableMapOf<String, String>()
-                if (source.url.endsWith("m3u8")) {
-                    map.put("type", VideoUrl.VIDEO_URL_TYPE_M3U8)
-                } else {
-                    map.put("type", VideoUrl.VIDEO_URL_TYPE_WEB)
-                }
-                map.put("url", source.url)
-                urls.add(map)
-            }
+            val urls = mutableListOf<String>()
+            indexSource.sourceList.mapTo(urls) { it.url }
             model.videoUrls.add(VideoUrl(model.videoData.doubanId, model.videoData.name, indexSource.sourceIndex, urls))
         }
     }
@@ -68,6 +53,6 @@ class VideoDetailPresenter(override var view: VideoDetailContract.View) : VideoD
         model.getVideoDetail(videoId)
 
         val videoName = params.getString("videoName")
-        model.getVideoSource(videoName)
+        model.getVideoSource("硅谷")
     }
 }

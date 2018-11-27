@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.henry.cocovideodata.R
+import com.henry.cocovideodata.bean.VideoUrl
 import com.henry.cocovideodata.jsoup.PlaySource
 
 /**
@@ -13,14 +14,14 @@ import com.henry.cocovideodata.jsoup.PlaySource
  * date：2018/11/12
  * description：
  */
-class DetailSourceRecyclerAdapter(private val datas : MutableList<PlaySource.Item>) : RecyclerView.Adapter<DetailSourceRecyclerAdapter.MyViewHolder>() {
+class DetailSourceRecyclerAdapter(private val datas : MutableList<VideoUrl>) : RecyclerView.Adapter<DetailSourceRecyclerAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent?.context).inflate(R.layout.recycler_detail_list_item, parent, false)
         return MyViewHolder(itemView)
     }
 
-    fun addVideoSourceItem(list : MutableList<PlaySource.Item>) {
+    fun addVideoSourceItem(list : MutableList<VideoUrl>) {
         datas.addAll(list)
         notifyDataSetChanged()
     }
@@ -31,8 +32,13 @@ class DetailSourceRecyclerAdapter(private val datas : MutableList<PlaySource.Ite
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = datas[position]
         holder.videoIndexTv.text = data.index.toString()
-        holder.webSourceTv.text = data.url
-        holder.m3u8SourceTv.text = data.url
+        for (url in data.urls) {
+            if (url.endsWith("m3u8")) {
+                holder.m3u8SourceTv.text
+            }else{
+                holder.webSourceTv.text = url
+            }
+        }
     }
 
     class MyViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {

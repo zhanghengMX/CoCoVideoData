@@ -17,7 +17,6 @@ interface VideoDetailContract {
     }
 
     interface Presenter : BasePresenter<View> {
-        fun insertVideoItem()
         fun buildVideoUrlData(webMovie : WebMovie)
         fun getVideoDetailCache() : VideoDetail
         fun getVideoUrlsCache() : MutableList<VideoUrl>
