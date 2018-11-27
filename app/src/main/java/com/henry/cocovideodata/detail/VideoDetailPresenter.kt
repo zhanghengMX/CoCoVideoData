@@ -1,12 +1,12 @@
 package com.henry.cocovideodata.detail
 
-import android.app.Application
 import android.os.Bundle
 import android.text.TextUtils
 import com.henry.cocovideodata.App
 import com.henry.cocovideodata.base.BaseModel
 import com.henry.cocovideodata.base.DataResponseListener
-import com.henry.cocovideodata.bean.Video
+import com.henry.cocovideodata.bean.VideoDetail
+import com.henry.cocovideodata.bean.VideoUrl
 import com.henry.cocovideodata.jsoup.WebMovie
 
 /**
@@ -36,6 +36,31 @@ class VideoDetailPresenter(override var view: VideoDetailContract.View) : VideoD
     })
     override fun insertVideoItem() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getVideoDetailCache(): VideoDetail {
+        return model.videoData
+    }
+
+    override fun getVideoUrlsCache(): MutableList<VideoUrl> {
+        return model.videoUrls
+    }
+
+    override fun buildVideoUrlData(webMovie: WebMovie) {
+        for (indexSource in webMovie.playSource) {
+            val urls = mutableListOf<MutableMap<String, String>>()
+            for (source in indexSource.sourceList) {
+                val map = mutableMapOf<String, String>()
+                if (source.url.endsWith("m3u8")) {
+                    map.put("type", VideoUrl.VIDEO_URL_TYPE_M3U8)
+                } else {
+                    map.put("type", VideoUrl.VIDEO_URL_TYPE_WEB)
+                }
+                map.put("url", source.url)
+                urls.add(map)
+            }
+            model.videoUrls.add(VideoUrl(model.videoData.doubanId, model.videoData.name, indexSource.sourceIndex, urls))
+        }
     }
 
     override fun start(params : Bundle) {

@@ -1,12 +1,11 @@
 package com.henry.cocovideodata.detail
 
-import android.util.Log
 import com.google.gson.Gson
 import com.henry.cocovideodata.base.BaseModel
 import com.henry.cocovideodata.base.DataResponseListener
-import com.henry.cocovideodata.bean.Top250Video
-import com.henry.cocovideodata.bean.Video
+import com.henry.cocovideodata.bean.VideoDetail
 import com.henry.cocovideodata.bean.VideoDetailBean
+import com.henry.cocovideodata.bean.VideoUrl
 import com.henry.cocovideodata.jsoup.SourceCatcher
 import okhttp3.*
 import java.io.IOException
@@ -18,6 +17,9 @@ import java.io.IOException
  * description：
  */
 class VideoDetailModel(override var responseListener: DataResponseListener) : BaseModel{
+
+    lateinit var videoData : VideoDetail
+    var videoUrls : MutableList<VideoUrl> = mutableListOf()
 
     fun getVideoDetail(videoId : String) {
         val request = Request.Builder()
@@ -54,13 +56,13 @@ class VideoDetailModel(override var responseListener: DataResponseListener) : Ba
                         images.put("large", videoDetailBean.images.large)
                         images.put("medium", videoDetailBean.images.medium)
                         images.put("small", videoDetailBean.images.small)
-                        val video = Video(videoDetailBean.id, videoDetailBean.title,
+                        videoData = VideoDetail(videoDetailBean.id, videoDetailBean.title,
                                 videoDetailBean.rating.average, videoDetailBean.year,
                                 videoDetailBean.countries, videoDetailBean.genres,
                                 actorList, videoDetailBean.summary,
-                                videoDetailBean.subtype, directorList, images, mutableListOf())
+                                videoDetailBean.subtype, directorList, images)
 
-                        responseListener.onResult(BaseModel.DATA_TYPE_VIDEO_DETAIL, video)
+                        responseListener.onResult(BaseModel.DATA_TYPE_VIDEO_DETAIL, videoData)
                     }
                 })
     }

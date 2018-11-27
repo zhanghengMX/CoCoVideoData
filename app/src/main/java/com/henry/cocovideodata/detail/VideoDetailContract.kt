@@ -2,6 +2,8 @@ package com.henry.cocovideodata.detail
 
 import com.henry.cocovideodata.base.BasePresenter
 import com.henry.cocovideodata.base.BaseView
+import com.henry.cocovideodata.bean.VideoDetail
+import com.henry.cocovideodata.bean.VideoUrl
 import com.henry.cocovideodata.jsoup.WebMovie
 
 /**
@@ -11,11 +13,13 @@ import com.henry.cocovideodata.jsoup.WebMovie
  */
 interface VideoDetailContract {
     interface View : BaseView<Presenter> {
-        fun refreshVideoSource(data: Any)
         fun showSourceListDialog(list: Any)
     }
 
     interface Presenter : BasePresenter<View> {
         fun insertVideoItem()
+        fun buildVideoUrlData(webMovie : WebMovie)
+        fun getVideoDetailCache() : VideoDetail
+        fun getVideoUrlsCache() : MutableList<VideoUrl>
     }
 }
