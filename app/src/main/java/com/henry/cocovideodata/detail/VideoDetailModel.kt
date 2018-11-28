@@ -1,5 +1,6 @@
 package com.henry.cocovideodata.detail
 
+import android.util.Log
 import com.google.gson.Gson
 import com.henry.cocovideodata.base.BaseModel
 import com.henry.cocovideodata.base.DataResponseListener
@@ -26,6 +27,7 @@ class VideoDetailModel(override var responseListener: DataResponseListener) : Ba
                 .url("https://api.douban.com/v2/movie/subject/$videoId")
                 .method("GET", null)
                 .build()
+        Log.i("VideoDetailModel", request.url().toString())
         OkHttpClient().newCall(request)
                 .enqueue(object : Callback {
                     override fun onFailure(call: Call?, e: IOException?) {
@@ -38,9 +40,9 @@ class VideoDetailModel(override var responseListener: DataResponseListener) : Ba
                         val actorList = mutableListOf<MutableMap<String, String>>()
                         for (cast in videoDetailBean.casts) {
                             val map = mutableMapOf<String, String>()
-                            map.put("actor_id", cast.id)
-                            map.put("actor_name", cast.name)
-                            map.put("actor_head", cast.avatars.small)
+                            map.put("actor_id", if(cast.id== null) "" else cast.id)
+                            map.put("actor_name", if(cast.name== null) "" else cast.name)
+                            map.put("actor_head", if(cast.avatars?.small == null) "" else cast.avatars.small)
                             actorList.add(map)
                         }
 

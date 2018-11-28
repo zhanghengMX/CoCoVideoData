@@ -23,7 +23,7 @@ class SearchModel(override var responseListener: DataResponseListener) : BaseMod
         val call = OkHttpClient().newCall(request)
         call.enqueue(object : Callback {
             override fun onFailure(call: Call?, e: IOException?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                TODO("not implemented")
             }
 
             override fun onResponse(call: Call?, response: Response?) {

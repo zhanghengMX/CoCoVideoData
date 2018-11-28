@@ -1,4 +1,4 @@
-package com.henry.cocovideodata.top250
+package com.henry.cocovideodata.search
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -16,7 +16,7 @@ import com.henry.cocovideodata.bean.VideoListItem
  * date：2018/11/12
  * description：
  */
-class Top250ListRecyclerAdapter(private val datas : MutableList<VideoListItem>) : RecyclerView.Adapter<Top250ListRecyclerAdapter.MyViewHolder>() {
+class SearchRecyclerAdapter(private val datas : MutableList<VideoListItem>) : RecyclerView.Adapter<SearchRecyclerAdapter.MyViewHolder>() {
     private var onclickListener : RecyclerOnItemClickListener<VideoListItem>? = null
 
     fun setOnClickListener(listener : RecyclerOnItemClickListener<VideoListItem>) {
@@ -32,6 +32,12 @@ class Top250ListRecyclerAdapter(private val datas : MutableList<VideoListItem>) 
         datas.addAll(list)
         notifyDataSetChanged()
     }
+
+    fun removeAllItem() {
+        datas.clear()
+        notifyDataSetChanged()
+    }
+
     override fun getItemCount(): Int {
         return datas.size
     }
