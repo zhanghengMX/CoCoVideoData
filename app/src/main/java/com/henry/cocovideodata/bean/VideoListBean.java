@@ -7,7 +7,7 @@ import java.util.List;
  * date：2018/11/8
  * description：
  */
-public class Top250Video {
+public class VideoListBean {
     /**
      * count : 3
      * start : 0

@@ -5,7 +5,7 @@ import android.text.TextUtils
 import com.henry.cocovideodata.App
 import com.henry.cocovideodata.base.BaseModel
 import com.henry.cocovideodata.base.DataResponseListener
-import com.henry.cocovideodata.bean.Top250Video
+import com.henry.cocovideodata.bean.VideoListBean
 import com.henry.cocovideodata.bean.VideoListItem
 
 /**
@@ -22,7 +22,7 @@ class Top250ListPresenter(override var view: Top250ListContract.View) : Top250Li
         override fun onResult(dataType: String, result: Any) {
             REQUEST_TOTAL_COUNT += REQUEST_VIDEO_COUNT
             if (TextUtils.equals(BaseModel.DATA_TYPE_TOP_250, dataType)) {
-                val top250Video = result as Top250Video
+                val top250Video = result as VideoListBean
                 val videoList = ArrayList<VideoListItem>()
                 for (subject in top250Video.subjects) {
                     val actorNames = ArrayList<String>()
