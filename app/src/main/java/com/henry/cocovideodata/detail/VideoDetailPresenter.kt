@@ -53,6 +53,6 @@ class VideoDetailPresenter(override var view: VideoDetailContract.View) : VideoD
         model.getVideoDetail(videoId)
 
         val videoName = params.getString("videoName")
-        model.getVideoSource("硅谷")
+        model.getVideoSource(videoName)
     }
 }

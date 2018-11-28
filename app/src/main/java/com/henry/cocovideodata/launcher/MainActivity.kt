@@ -1,10 +1,16 @@
 package com.henry.cocovideodata.launcher
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.util.DisplayMetrics
+import android.util.Log
+import android.view.WindowManager
 import com.henry.cocovideodata.R
 import com.henry.cocovideodata.base.RecyclerOnItemClickListener
 import com.henry.cocovideodata.top250.MainPageRecyclerAdapter
@@ -20,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initView()
+        getAndroiodScreenProperty()
     }
 
     private fun initView() {
@@ -29,8 +36,10 @@ class MainActivity : AppCompatActivity() {
                 openActivityByName(t)
             }
         })
-        mainPageRecyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        mainPageRecyclerView.layoutManager = LinearLayoutManager(this)
+        val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        divider.setDrawable(ContextCompat.getDrawable(this, R.drawable.main_page_custom_divider))
+        mainPageRecyclerView.addItemDecoration(divider)
+        mainPageRecyclerView.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
         mainPageRecyclerView.adapter = recyclerAdapter
     }
 
@@ -40,5 +49,19 @@ class MainActivity : AppCompatActivity() {
             items[0] -> intent.setClass(this, Top250ListActivity::class.java)
         }
         startActivity(intent)
+    }
+
+    fun getAndroiodScreenProperty() {
+        val wm = getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val dm = DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(dm);
+        val width = dm . widthPixels;// 屏幕宽度（像素）
+        val height = dm . heightPixels; // 屏幕高度（像素）
+        val density = dm . density;//屏幕密度（0.75 / 1.0 / 1.5）
+        val densityDpi = dm . densityDpi;//屏幕密度dpi（120 / 160 / 240）
+        //屏幕宽度算法:屏幕宽度（像素）/屏幕密度
+        val screenWidth =(width / density);//屏幕宽度(dp)
+        val screenHeight =(height / density);//屏幕高度(dp)
+        Log.e("MainActivity", "$screenWidth======$screenHeight")
     }
 }

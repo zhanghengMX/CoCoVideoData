@@ -34,7 +34,7 @@ class DetailSourceRecyclerAdapter(private val datas : MutableList<VideoUrl>) : R
         holder.videoIndexTv.text = data.index.toString()
         for (url in data.urls) {
             if (url.endsWith("m3u8")) {
-                holder.m3u8SourceTv.text
+                holder.m3u8SourceTv.text = url
             }else{
                 holder.webSourceTv.text = url
             }

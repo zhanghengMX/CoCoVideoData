@@ -47,4 +47,5 @@ dependencies {
     compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'
     testCompile 'junit:junit:4.12'
     compile 'org.jsoup:jsoup:1.11.3'
+    compile 'me.jessyan:autosize:1.0.1'
 }
