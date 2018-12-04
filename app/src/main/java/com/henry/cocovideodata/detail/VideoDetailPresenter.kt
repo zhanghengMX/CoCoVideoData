@@ -16,6 +16,7 @@ import com.henry.cocovideodata.jsoup.WebMovie
  * description：
  */
 class VideoDetailPresenter(override var view: VideoDetailContract.View) : VideoDetailContract.Presenter{
+
     init{
         view.presenter = this
     }
@@ -35,7 +36,9 @@ class VideoDetailPresenter(override var view: VideoDetailContract.View) : VideoD
         }
     })
 
-
+    override fun getVideoIsUploadFlag(): Boolean {
+        return model.videoIsUpload
+    }
     override fun getVideoDetailCache(): VideoDetail = model.videoData
 
     override fun getVideoUrlsCache(): MutableList<VideoUrl> = model.videoUrls
@@ -50,6 +53,7 @@ class VideoDetailPresenter(override var view: VideoDetailContract.View) : VideoD
 
     override fun start(params : Bundle) {
         val videoId = params.getString("videoId")
+        model.checkVideoIsUpload(videoId)
         model.getVideoDetail(videoId)
 
         val videoName = params.getString("videoName")

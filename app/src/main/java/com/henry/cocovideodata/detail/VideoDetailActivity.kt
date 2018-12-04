@@ -8,6 +8,7 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.henry.cocovideodata.R
 import com.henry.cocovideodata.bean.VideoDetail
@@ -87,7 +88,10 @@ class VideoDetailActivity : AppCompatActivity(), VideoDetailContract.View {
     }
 
     fun onUploadData(view: View) {
-        Log.i("HR", "onUploadData")
+        if (presenter.getVideoIsUploadFlag()) {
+            Toast.makeText(this, "此影片已上传", Toast.LENGTH_LONG).show()
+            return
+        }
         BmobHelper.uploadObject(presenter.getVideoDetailCache(), object : BmobHelper.BmobLoadDataListener {
             override fun onFailed() {
             }

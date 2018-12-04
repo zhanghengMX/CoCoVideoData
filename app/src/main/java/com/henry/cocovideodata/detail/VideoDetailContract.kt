@@ -20,5 +20,6 @@ interface VideoDetailContract {
         fun buildVideoUrlData(webMovie : WebMovie)
         fun getVideoDetailCache() : VideoDetail
         fun getVideoUrlsCache() : MutableList<VideoUrl>
+        fun getVideoIsUploadFlag() : Boolean
     }
 }

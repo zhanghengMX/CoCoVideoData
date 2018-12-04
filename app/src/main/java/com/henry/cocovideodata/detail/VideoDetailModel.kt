@@ -1,6 +1,9 @@
 package com.henry.cocovideodata.detail
 
 import android.util.Log
+import cn.bmob.v3.BmobQuery
+import cn.bmob.v3.exception.BmobException
+import cn.bmob.v3.listener.FindListener
 import com.google.gson.Gson
 import com.henry.cocovideodata.base.BaseModel
 import com.henry.cocovideodata.base.DataResponseListener
@@ -21,6 +24,22 @@ class VideoDetailModel(override var responseListener: DataResponseListener) : Ba
 
     lateinit var videoData : VideoDetail
     var videoUrls : MutableList<VideoUrl> = mutableListOf()
+    var videoIsUpload = false
+
+    fun checkVideoIsUpload(videoId : String) {
+        val bmobQuery = BmobQuery<VideoDetail>()
+        bmobQuery.addWhereEqualTo("doubanId", videoId)
+                .findObjects(object : FindListener<VideoDetail>() {
+                    override fun done(p0: MutableList<VideoDetail>?, p1: BmobException?) {
+                        if (p0?.size!! > 0) {
+                            videoIsUpload = true
+                        } else{
+                            videoIsUpload = false
+                        }
+                    }
+
+                })
+    }
 
     fun getVideoDetail(videoId : String) {
         val request = Request.Builder()
