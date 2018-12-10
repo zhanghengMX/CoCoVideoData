@@ -94,17 +94,24 @@ class VideoDetailActivity : AppCompatActivity(), VideoDetailContract.View {
         }
         BmobHelper.uploadObject(presenter.getVideoDetailCache(), object : BmobHelper.BmobLoadDataListener {
             override fun onFailed() {
+                Log.d(TAG, "upload video detail failed")
+                Toast.makeText(this@VideoDetailActivity, "影片信息上传失败", Toast.LENGTH_SHORT).show()
             }
 
             override fun onSuccess() {
-
+                Log.d(TAG, "upload video detail success")
+                Toast.makeText(this@VideoDetailActivity, "影片信息上传成功", Toast.LENGTH_SHORT).show()
             }
         })
         BmobHelper.batchUploadObject(presenter.getVideoUrlsCache(), object : BmobHelper.BmobLoadDataListener {
             override fun onSuccess() {
+                Log.d(TAG, "upload video url success")
+                Toast.makeText(this@VideoDetailActivity, "播放串上传成功", Toast.LENGTH_LONG).show()
             }
 
             override fun onFailed() {
+                Log.d(TAG, "upload video url failed")
+                Toast.makeText(this@VideoDetailActivity, "播放串上传失败", Toast.LENGTH_LONG).show()
             }
         })
     }
