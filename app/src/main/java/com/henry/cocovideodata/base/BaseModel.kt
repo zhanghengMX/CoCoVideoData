@@ -12,6 +12,9 @@ interface BaseModel {
         val DATA_TYPE_VIDEO_DETAIL = "@data-type-video_detail"
         val DATA_TYPE_VIDEO_SOURCE = "@data-type-video_source"
         val DATA_TYPE_SEARCH_RESULT = "@data-type-searche_result"
+        val DATA_TYPE_CLASSIFICATION_TV = "tv"
+        val DATA_TYPE_CLASSIFICATION_MOVIE = "movie"
+        val DATA_TYPE_CLASSIFICATION_VIDEO_LIST = "@data-type-classification_video_list"
 
     }
 }

@@ -41,7 +41,7 @@ class Top250ListPresenter(override var view: Top250ListContract.View) : Top250Li
                             actorNames,
                             subject.subtype,
                             directorNames,
-                            mutableListOf(subject.images.large, subject.images.medium, subject.images.small)))
+                            mutableListOf(subject.images.medium, subject.images.large, subject.images.small)))
                 }
                 App.instance().postToMainLooper(object : Runnable {
                     override fun run() {

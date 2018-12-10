@@ -1,4 +1,4 @@
-package com.henry.cocovideodata.top250
+package com.henry.cocovideodata.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -16,7 +16,7 @@ import com.henry.cocovideodata.bean.VideoListItem
  * date：2018/11/12
  * description：
  */
-class Top250ListRecyclerAdapter(private val datas : MutableList<VideoListItem>) : RecyclerView.Adapter<Top250ListRecyclerAdapter.MyViewHolder>() {
+class VideoListRecyclerAdapter(private val datas : MutableList<VideoListItem>) : RecyclerView.Adapter<VideoListRecyclerAdapter.MyViewHolder>() {
     private var onclickListener : RecyclerOnItemClickListener<VideoListItem>? = null
 
     fun setOnClickListener(listener : RecyclerOnItemClickListener<VideoListItem>) {
@@ -32,6 +32,11 @@ class Top250ListRecyclerAdapter(private val datas : MutableList<VideoListItem>) 
         datas.addAll(list)
         notifyDataSetChanged()
     }
+
+    fun clearVideoListItem() {
+        datas.clear()
+        notifyDataSetChanged()
+    }
     override fun getItemCount(): Int {
         return datas.size
     }
@@ -39,11 +44,11 @@ class Top250ListRecyclerAdapter(private val datas : MutableList<VideoListItem>) 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = datas[position]
         holder.videoNameTv.text = data.name
-        holder.actorTv.text = data.casts.toString()
-        holder.directorTv.text = data.directors.toString()
+        holder.actorTv.text = (if(data.casts.size==0) "" else data.casts.toString())
+        holder.directorTv.text = (if(data.directors.size==0) "" else data.directors.toString())
         holder.scoreTv.text = data.average
         Glide.with(holder.itemView.context)
-                .load(data.images[1])
+                .load(data.images[0])
                 .into(holder.posterIv)
         holder.itemView.setOnClickListener { onclickListener?.onClick(data) }
     }

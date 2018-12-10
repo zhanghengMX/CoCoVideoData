@@ -72,9 +72,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/tv_score"
         android:textSize="36px"
-        android:layout_marginStart="240dp"
+        android:layout_marginStart="220dp"
         app:layout_constraintLeft_toRightOf="@+id/iv_poster"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintTop_toTopOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

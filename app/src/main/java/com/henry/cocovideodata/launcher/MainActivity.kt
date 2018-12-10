@@ -12,7 +12,9 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.view.WindowManager
 import com.henry.cocovideodata.R
+import com.henry.cocovideodata.base.BaseModel
 import com.henry.cocovideodata.base.RecyclerOnItemClickListener
+import com.henry.cocovideodata.classification.ClassificationActivity
 import com.henry.cocovideodata.search.SearchActivity
 import com.henry.cocovideodata.top250.MainPageRecyclerAdapter
 import com.henry.cocovideodata.top250.Top250ListActivity
@@ -49,6 +51,14 @@ class MainActivity : AppCompatActivity() {
         when(pageName) {
             items[0] -> intent.setClass(this, Top250ListActivity::class.java)
             items[1] -> intent.setClass(this, SearchActivity::class.java)
+            items[2] -> {
+                intent.setClass(this, ClassificationActivity::class.java)
+                intent.putExtra("classification_type", BaseModel.DATA_TYPE_CLASSIFICATION_MOVIE)
+            }
+            items[3] -> {
+                intent.setClass(this, ClassificationActivity::class.java)
+                intent.putExtra("classification_type", BaseModel.DATA_TYPE_CLASSIFICATION_TV)
+            }
         }
         startActivity(intent)
     }

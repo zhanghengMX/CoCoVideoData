@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import com.henry.cocovideodata.R
+import com.henry.cocovideodata.adapter.VideoListRecyclerAdapter
 import com.henry.cocovideodata.base.RecyclerOnItemClickListener
 import com.henry.cocovideodata.bean.VideoListItem
 import com.henry.cocovideodata.detail.VideoDetailActivity
@@ -30,7 +31,7 @@ class Top250ListActivity : AppCompatActivity(), Top250ListContract.View {
     }
 
     override var presenter: Top250ListContract.Presenter = Top250ListPresenter(this)
-    private lateinit var recyclerAdapter: Top250ListRecyclerAdapter
+    private lateinit var recyclerAdapter: VideoListRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +52,7 @@ class Top250ListActivity : AppCompatActivity(), Top250ListContract.View {
         })
         recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerAdapter = Top250ListRecyclerAdapter(mutableListOf())
+        recyclerAdapter = VideoListRecyclerAdapter(mutableListOf())
         recyclerAdapter.setOnClickListener(object : RecyclerOnItemClickListener<VideoListItem> {
             override fun onClick(t: VideoListItem) {
                 val intent = Intent(this@Top250ListActivity, VideoDetailActivity::class.java)

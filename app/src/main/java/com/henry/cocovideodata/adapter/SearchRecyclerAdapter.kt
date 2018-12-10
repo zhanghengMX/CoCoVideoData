@@ -1,4 +1,4 @@
-package com.henry.cocovideodata.search
+package com.henry.cocovideodata.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -49,7 +49,7 @@ class SearchRecyclerAdapter(private val datas : MutableList<VideoListItem>) : Re
         holder.directorTv.text = data.directors.toString()
         holder.scoreTv.text = data.average
         Glide.with(holder.itemView.context)
-                .load(data.images[1])
+                .load(data.images[0])
                 .into(holder.posterIv)
         holder.itemView.setOnClickListener { onclickListener?.onClick(data) }
     }

@@ -7,6 +7,7 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.henry.cocovideodata.R
+import com.henry.cocovideodata.adapter.SearchRecyclerAdapter
 import com.henry.cocovideodata.base.RecyclerOnItemClickListener
 import com.henry.cocovideodata.bean.VideoListItem
 import com.henry.cocovideodata.detail.VideoDetailActivity

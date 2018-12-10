@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/videoListRefreshLayout"
-    tools:context=".MainActivity">
+    tools:context=".top250.Top250ListActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
